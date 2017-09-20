@@ -1,0 +1,59 @@
+buildscript {
+    repositories { jcenter() }
+}
+
+
+plugins {
+  id "com.jfrog.artifactory" version "4.5.2"
+}
+
+apply plugin: 'maven-publish'
+apply plugin: "ivy-publish"
+apply plugin: 'java'
+
+group 'com.baidu.yun'
+version '3.0.1'
+
+compileJava { 
+  options.encoding = "UTF-8" 
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+artifactory {
+    contextUrl = artifactory_contextUrl
+    publish {
+        repository {
+            repoKey = 'ext-release-local'
+            username = artifactory_user
+            password = artifactory_password
+            maven = true
+        }
+    }
+}
+
+artifactoryPublish {
+    publications ('mavenJava')
+}
