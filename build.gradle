@@ -2,13 +2,7 @@ buildscript {
     repositories { jcenter() }
 }
 
-
-plugins {
-  id "com.jfrog.artifactory" version "4.5.2"
-}
-
 apply plugin: 'maven-publish'
-apply plugin: "ivy-publish"
 apply plugin: 'java'
 
 group 'com.baidu.yun'
@@ -40,20 +34,4 @@ publishing {
             from components.java
         }
     }
-}
-
-artifactory {
-    contextUrl = artifactory_contextUrl
-    publish {
-        repository {
-            repoKey = 'ext-release-local'
-            username = artifactory_user
-            password = artifactory_password
-            maven = true
-        }
-    }
-}
-
-artifactoryPublish {
-    publications ('mavenJava')
 }
