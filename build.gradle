@@ -6,7 +6,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'java'
 
 group 'com.baidu.yun'
-version '3.0.1'
+version '3.0.1-1'
 
 compileJava { 
   options.encoding = "UTF-8" 
@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
 }
 
 
