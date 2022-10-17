@@ -18,15 +18,15 @@ repositories {
 }
 
 dependencies {
-    compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
+    implementation group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
 }
 
-
+/**
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
-
+**/
 
 publishing {
     publications {
